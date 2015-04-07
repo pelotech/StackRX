@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/graemeharnish/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-urlconnection/2.3.0/4f12ec1e1455909e1f0b8530c719c90b2d01745/okhttp-urlconnection-2.3.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="04f12ec1e1455909e1f0b8530c719c90b2d01745">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-2.3.0-de9ed3b3d4cf40183eb06c51e76f2e91306f1133.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.3.0/2e7bc7033dc2c8423e661224171b3133fb155b28/okhttp-2.3.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="2e7bc7033dc2c8423e661224171b3133fb155b28">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/okhttp-2.3.0-dc50739c6fbd65d8665ea6939e1fd6f4a1b4b955.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/exploded-aar/StackRX/stackrx-services/unspecified/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="0480495eaffd032b73d093f181608ceb5077bd69">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/classes-0deeaae561909f21fd61582a745cc3d72a282e52.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/classes-71931cf8beb2765cf6c0c5404da717c0aeb48ad7.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/.gradle/caches/modules-2/files-2.1/org.roboguice/roboguice/3.0.1/24e814f35d5cc28eaa7e9f07a50ea69deeb2b544/roboguice-3.0.1.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="24e814f35d5cc28eaa7e9f07a50ea69deeb2b544">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/roboguice-3.0.1-f1ba01ca8d59602f58034fa83d3a65c6dad97415.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-e44e6cba8710954b9cb49e60284b11aa53f9910a.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.9.0/a681c044244d9fc375198588297a39ba78028423/retrofit-1.9.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="a681c044244d9fc375198588297a39ba78028423">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/retrofit-1.9.0-ac24116d464a14201654dc8cb1237557d65a6b11.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/classes-a72e604d25c2fd2ce691776597a66d9887ae621d.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/.gradle/caches/modules-2/files-2.1/io.reactivex/rxandroid/0.24.0/42dab493b8f74b164e082f281480c9d493ff89da/rxandroid-0.24.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="42dab493b8f74b164e082f281480c9d493ff89da">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/rxandroid-0.24.0-f994438e973772242b30ba53c28e8188dbd00710.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/gson-2.3.1-c3cb588c76be86c09a16a9978d07e1f9dd195010.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.3.0/1b355f73402020c5a0dcca58affc3ec3dfeabac1/okio-1.3.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="1b355f73402020c5a0dcca58affc3ec3dfeabac1">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/okio-1.3.0-203f66c92cdf8791f7baadc600cc1954637b2de2.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-a67fda1a47ccee1d1714bb501adcb19604a2ecce.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.5/7941cd2c2c8ec006800d75c35f8a9dacf892ab93/otto-1.3.5.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="7941cd2c2c8ec006800d75c35f8a9dacf892ab93">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/otto-1.3.5-04017e9f1e53923ff33bc05fa8fe15e968308dff.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/.gradle/caches/modules-2/files-2.1/javax.annotation/jsr250-api/1.0/5025422767732a1ab45d93abfea846513d742dcf/jsr250-api-1.0.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="5025422767732a1ab45d93abfea846513d742dcf">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/jsr250-api-1.0-ec60364cd45b28c1c13777bbe5142326a3fa19b8.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.0.4/a607b0e12d2de769dc219e00b60a9b3d9e730d/rxjava-1.0.4.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="00a607b0e12d2de769dc219e00b60a9b3d9e730d">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/rxjava-1.0.4-187b7ab8f49a8c691aad7b5e2757e5cbd5cfb1f8.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="c6d79137693d494dee16372d3921f919eb724ced">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/classes-3d2befa3809309e5a3187cec1ce2d5a3e6940cbc.jar" />
+    </item>
+    <item
+        jar="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/Users/graemeharnish/workspace/StackRX/app/build/intermediates/pre-dexed/debug/classes-f18e04faa9346fd717d7cf4d7a959400bed2e0ea.jar" />
+    </item>
+
+</items>
