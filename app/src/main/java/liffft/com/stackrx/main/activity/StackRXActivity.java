@@ -48,6 +48,25 @@ public class StackRXActivity extends RoboActionBarActivity {
     //endregion
 
     //region LIFE CYCLE METHODS --------------------------------------------------------------------
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        RoboGuice.setUseAnnotationDatabases(false);
+        super.onCreate(savedInstanceState);
+        mTitle = getTitle();
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+
+        // Set up the drawer.
+        mNavigationDrawerFragment.setUp(
+                R.id.navigation_drawer,
+                (DrawerLayout) findViewById(R.id.drawer_layout));
+
+
+    }
+
     //endregion
 
     //region WIDGET --------------------------------------------------------------------------------
@@ -95,26 +114,6 @@ public class StackRXActivity extends RoboActionBarActivity {
     //endregion
 
     //region LOCAL METHODS -------------------------------------------------------------------------
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        RoboGuice.setUseAnnotationDatabases(false);
-        super.onCreate(savedInstanceState);
-
-        mTitle = getTitle();
-    }
-
-    @Override
-    public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onPostCreate(savedInstanceState, persistentState);
-
-        // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
-
-
-    }
     //endregion
 
     //region SUBSCRIBERS ---------------------------------------------------------------------------

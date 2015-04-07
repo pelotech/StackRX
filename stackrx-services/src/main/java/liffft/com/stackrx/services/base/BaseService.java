@@ -33,7 +33,7 @@ public abstract class BaseService<InterfaceType> {
      * @param parameters     environment parameters
      */
     public BaseService(final Class<InterfaceType> interfaceClass, final ServiceParameters parameters) {
-        if (null == interfaceClass || null == parameters) {
+        if (interfaceClass == null) {
             throw new IllegalArgumentException("Constructor parameters cannot be null!");
         }
         this.interfaceClass = interfaceClass;
@@ -51,7 +51,7 @@ public abstract class BaseService<InterfaceType> {
         OkHttpClient client = new OkHttpClient();
 
             // auto-verify SSL certs for non-production environments.
-            try {
+        try {
                 KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
                 trustStore.load(null, null);
 
@@ -66,11 +66,11 @@ public abstract class BaseService<InterfaceType> {
 
             return new OkClient(client);
         }
-            catch (Exception ex) {
+
+        catch (Exception ex) {
             Log.e(BaseService.class.toString(), ex.toString() + "\n" + ex.getMessage());
             return null;
         }
-
 
     }
 

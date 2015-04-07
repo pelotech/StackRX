@@ -8,7 +8,7 @@ import rx.Observable;
  * Created by pair on 4/6/15.
  */
 public interface QuestionsService {
-    @GET("2.2/questions?order=desc&sort=activity&site=stackoverflow")
+    @GET("/2.2/questions?order=desc&sort=activity&site=stackoverflow")
     Observable<Questions> getQuestions();
 
 }

@@ -44,6 +44,7 @@ public class NavigationDrawerFragment extends RoboFragment {
     //endregion
 
     //region INJECTED VIEWS ------------------------------------------------------------------------
+
     @InjectView(R.id.fragment_navigation_drawer_list_view)
     private ListView mDrawerListView;
     //endregion

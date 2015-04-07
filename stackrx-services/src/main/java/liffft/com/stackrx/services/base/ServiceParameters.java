@@ -1,5 +1,7 @@
 package liffft.com.stackrx.services.base;
 
+import com.google.inject.Inject;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -9,14 +11,15 @@ import java.util.Set;
  */
 
 public class ServiceParameters {
-    private final String url;
-    private final String endpoint;
+    private String url = "";
+    private String endpoint = "";
 
     private final Map<String, String> queryParams = new HashMap<>();
     private final Map<String, String> headers = new HashMap<>();
 
     public boolean ignoreCerts = false;
 
+    @Inject
     public ServiceParameters(String url, String endpoint) {
         this.url = url;
         this.endpoint = endpoint;
