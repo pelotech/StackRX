@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.inject.Inject;
 
 import liffft.com.stackrx.R;
+import liffft.com.stackrx.main.user.UserSession;
 import liffft.com.stackrx.questions.adapter.QuestionRecyclerViewAdapter;
 import liffft.com.stackrx.services.questions.dao.QuestionsDAO;
 import liffft.com.stackrx.services.questions.model.Questions;
@@ -28,6 +29,9 @@ public class QuestionsFragment extends RoboFragment {
 
     @Inject
     QuestionsDAO mQuestionsDAO;
+
+    @Inject
+    UserSession mUserSession;
     //endregion
 
     //region INJECTED VIEWS ------------------------------------------------------------------------
@@ -72,8 +76,6 @@ public class QuestionsFragment extends RoboFragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-        mQuestionRecyclerViewAdapter = new QuestionRecyclerViewAdapter();
-        mRecyclerView.setAdapter(mQuestionRecyclerViewAdapter);
 
         // Subscribe and call the observable
         mGetQuestionSubscriber = new GetQuestionSubscriber();
@@ -107,12 +109,15 @@ public class QuestionsFragment extends RoboFragment {
 
         @Override
         public void onError(Throwable e) {
-            Toast.makeText(mActivity, mActivity.getString(R.string.service_error), Toast.LENGTH_SHORT);
+            Toast.makeText(mActivity, mActivity.getString(R.string.service_error), Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onNext(Questions questions) {
-            Toast.makeText(mActivity, mActivity.getString(R.string.service_error), Toast.LENGTH_SHORT);
+            mUserSession.setQuestions(questions);
+            mQuestionRecyclerViewAdapter = new QuestionRecyclerViewAdapter(getActivity());
+            mRecyclerView.setAdapter(mQuestionRecyclerViewAdapter);
+            mQuestionRecyclerViewAdapter.notifyDataSetChanged();
         }
     }
     //endregion
