@@ -1,4 +1,4 @@
-package liffft.com.stackrx.questions.fragment;
+package liffft.com.stackrx.answers.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,20 +12,28 @@ import android.widget.Toast;
 import com.google.inject.Inject;
 
 import liffft.com.stackrx.R;
+import liffft.com.stackrx.answers.adapter.AnswersRecyclerViewAdapter;
+import liffft.com.stackrx.main.application.AppConstants;
+import liffft.com.stackrx.main.event.NavigationEvent;
 import liffft.com.stackrx.main.user.UserSession;
-import liffft.com.stackrx.questions.adapter.QuestionRecyclerViewAdapter;
-import liffft.com.stackrx.services.questions.dao.QuestionsDAO;
-import liffft.com.stackrx.services.questions.model.Questions;
+import liffft.com.stackrx.main.util.BusProvider;
+import liffft.com.stackrx.services.answers.dao.AnswersDAO;
+import liffft.com.stackrx.services.answers.model.Answers;
 import roboguice.fragment.RoboFragment;
+import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 
-public class QuestionsFragment extends RoboFragment {
+/**
+ * Created by graemeharnish on 4/7/15.
+ */
+@ContentView(R.layout.answers_fragment)
+public class AnswersFragment extends RoboFragment {
     //region INJECTED CLASSES ----------------------------------------------------------------------
 
     @Inject
-    QuestionsDAO mQuestionsDAO;
+    AnswersDAO mAnswersDAO;
 
     @Inject
     UserSession mUserSession;
@@ -33,7 +41,7 @@ public class QuestionsFragment extends RoboFragment {
 
     //region INJECTED VIEWS ------------------------------------------------------------------------
 
-    @InjectView (R.id.question_fragment_question_recycler_view)
+    @InjectView(R.id.answer_fragment_answer_recycler_view)
     RecyclerView mRecyclerView;
 
     //endregion
@@ -45,14 +53,14 @@ public class QuestionsFragment extends RoboFragment {
 
     //region CLASS VARIABLES -----------------------------------------------------------------------
 
-    private QuestionRecyclerViewAdapter mQuestionRecyclerViewAdapter;
+    private AnswersRecyclerViewAdapter mAnswersRecyclerViewAdapter;
 
-    private GetQuestionSubscriber mGetQuestionSubscriber;
+    private GetAnswersSubscriber mGetAnswersSubscriber;
     //endregion
 
     //region CONSTRUCTOR ---------------------------------------------------------------------------
 
-    public QuestionsFragment() {
+    public AnswersFragment() {
     }
 
     //endregion
@@ -61,7 +69,7 @@ public class QuestionsFragment extends RoboFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.questions_fragment, container, false);
+        return inflater.inflate(R.layout.answers_fragment, container, false);
     }
 
     @Override
@@ -75,10 +83,15 @@ public class QuestionsFragment extends RoboFragment {
         mRecyclerView.setLayoutManager(layoutManager);
 
         // Subscribe and call the observable
-        mGetQuestionSubscriber = new GetQuestionSubscriber();
-        mQuestionsDAO.getQuestions().observeOn(AndroidSchedulers.mainThread()).subscribe(mGetQuestionSubscriber);
+        mGetAnswersSubscriber = new GetAnswersSubscriber();
+        mAnswersDAO.getAnswersBasedOnQuestionId(String.valueOf(mUserSession.getSelectedQuestion().getQuestionId())).observeOn(AndroidSchedulers.mainThread()).subscribe(mGetAnswersSubscriber);
 
         mActivity = getActivity();
+        NavigationEvent navigationEvent = new NavigationEvent();
+        navigationEvent.setDrawerItem(AppConstants.NAVIGATION.DRAWER_IDENTIFIER.QUESTION_DRAWER);
+        navigationEvent.setFragmentName(AppConstants.NAVIGATION.NAVIGATION_ROUTES.ANSWER_FRAGMENT);
+        BusProvider.getInstance().post(navigationEvent);
+
     }
 
     //endregion
@@ -97,7 +110,7 @@ public class QuestionsFragment extends RoboFragment {
 
     //region SUBSCRIBERS ---------------------------------------------------------------------------
 
-    private class GetQuestionSubscriber extends Subscriber<Questions> {
+    private class GetAnswersSubscriber extends Subscriber<Answers> {
 
         @Override
         public void onCompleted() {
@@ -110,11 +123,11 @@ public class QuestionsFragment extends RoboFragment {
         }
 
         @Override
-        public void onNext(Questions questions) {
-            mUserSession.setQuestions(questions);
-            mQuestionRecyclerViewAdapter = new QuestionRecyclerViewAdapter(getActivity());
-            mRecyclerView.setAdapter(mQuestionRecyclerViewAdapter);
-            mQuestionRecyclerViewAdapter.notifyDataSetChanged();
+        public void onNext(Answers answers) {
+            mUserSession.setAnswers(answers);
+            mAnswersRecyclerViewAdapter = new AnswersRecyclerViewAdapter(getActivity());
+            mRecyclerView.setAdapter(mAnswersRecyclerViewAdapter);
+            mAnswersRecyclerViewAdapter.notifyDataSetChanged();
         }
     }
     //endregion
@@ -127,5 +140,4 @@ public class QuestionsFragment extends RoboFragment {
 
     //region CLASS METHODS -------------------------------------------------------------------------
     //endregion
-
 }

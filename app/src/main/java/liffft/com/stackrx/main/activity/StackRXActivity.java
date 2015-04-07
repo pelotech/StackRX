@@ -1,19 +1,17 @@
 package liffft.com.stackrx.main.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.inject.Inject;
-
 import liffft.com.stackrx.R;
+import liffft.com.stackrx.main.util.BusProvider;
 import liffft.com.stackrx.main.widget.NavigationDrawerFragment;
-import roboguice.RoboGuice;
 import roboguice.activity.RoboActionBarActivity;
 import roboguice.inject.ContentView;
+import roboguice.inject.InjectView;
 
 @ContentView(R.layout.stack_rx_activity)
 public class StackRXActivity extends RoboActionBarActivity {
@@ -22,12 +20,14 @@ public class StackRXActivity extends RoboActionBarActivity {
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-    @Inject
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     //endregion
 
     //region INJECTED VIEWS ------------------------------------------------------------------------
+
+    @InjectView(R.id.drawer_layout)
+    private DrawerLayout mDrawerLayout;
     //endregion
 
     //region LOCAL CONSTANTS -----------------------------------------------------------------------
@@ -50,20 +50,18 @@ public class StackRXActivity extends RoboActionBarActivity {
     //region LIFE CYCLE METHODS --------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        RoboGuice.setUseAnnotationDatabases(false);
         super.onCreate(savedInstanceState);
         mTitle = getTitle();
+        BusProvider.getInstance().register(this);
     }
 
     @Override
-    public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onPostCreate(savedInstanceState, persistentState);
-
-        // Set up the drawer.
+    protected void onResume() {
+        super.onResume();
+        mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
-
+                mDrawerLayout);
 
     }
 
@@ -111,6 +109,7 @@ public class StackRXActivity extends RoboActionBarActivity {
     //endregion
 
     //region EVENTS --------------------------------------------------------------------------------
+
     //endregion
 
     //region LOCAL METHODS -------------------------------------------------------------------------
@@ -127,5 +126,4 @@ public class StackRXActivity extends RoboActionBarActivity {
 
     //region CLASS METHODS -------------------------------------------------------------------------
     //endregion
-
 }

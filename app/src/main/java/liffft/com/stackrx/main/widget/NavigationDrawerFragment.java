@@ -23,8 +23,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.inject.Inject;
+import com.squareup.otto.Subscribe;
 
 import liffft.com.stackrx.R;
+import liffft.com.stackrx.answers.fragment.AnswersFragment;
+import liffft.com.stackrx.main.application.AppConstants;
+import liffft.com.stackrx.main.event.NavigationEvent;
 import liffft.com.stackrx.questions.fragment.QuestionsFragment;
 import roboguice.fragment.RoboFragment;
 import roboguice.inject.InjectView;
@@ -106,10 +110,17 @@ public class NavigationDrawerFragment extends RoboFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        NavigationEvent navigationEvent = new NavigationEvent();
+        if (mCurrentSelectedPosition == 0) {
+            navigationEvent.setDrawerItem(AppConstants.NAVIGATION.DRAWER_IDENTIFIER.QUESTION_DRAWER);
+            navigationEvent.setFragmentName(AppConstants.NAVIGATION.NAVIGATION_ROUTES.QUESTION_FRAGMENT);
+        }
+
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);
+
+                //selectItem(position);
             }
         });
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
@@ -134,7 +145,7 @@ public class NavigationDrawerFragment extends RoboFragment {
         }
 
         // Select either the default item (0) or the last selected item.
-        selectItem(mCurrentSelectedPosition);
+        selectItem(navigationEvent);
 
 
     }
@@ -190,6 +201,30 @@ public class NavigationDrawerFragment extends RoboFragment {
     //endregion
 
     //region EVENTS --------------------------------------------------------------------------------
+    @Subscribe
+    public void selectItem(NavigationEvent navigationEvent) {
+        mCurrentSelectedPosition = navigationEvent.getDrawerItem();
+        if (mDrawerListView != null) {
+
+            mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+            Fragment fragment = null;
+
+            if (mCurrentSelectedPosition == AppConstants.NAVIGATION.DRAWER_IDENTIFIER.QUESTION_DRAWER) {
+                if (navigationEvent.getFragmentName().equals(AppConstants.NAVIGATION.NAVIGATION_ROUTES.QUESTION_FRAGMENT))
+                    fragment = new QuestionsFragment();
+                else if (navigationEvent.getFragmentName().equals(AppConstants.NAVIGATION.NAVIGATION_ROUTES.QUESTION_FRAGMENT)) {
+                    fragment = new AnswersFragment();
+                }
+            }
+
+            mFragmentManager.beginTransaction()
+                    .replace(R.id.container, fragment)
+                    .commit();
+        }
+        if (mDrawerLayout != null) {
+            mDrawerLayout.closeDrawer(mFragmentContainerView);
+        }
+    }
     //endregion
 
     //region LOCAL METHODS -------------------------------------------------------------------------
@@ -271,27 +306,6 @@ public class NavigationDrawerFragment extends RoboFragment {
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
-
-    private void selectItem(int position) {
-        mCurrentSelectedPosition = position;
-        if (mDrawerListView != null) {
-
-            mDrawerListView.setItemChecked(position, true);
-            Fragment fragment = null;
-
-            if (position == 0) {
-                fragment = new QuestionsFragment();
-            }
-
-            mFragmentManager.beginTransaction()
-                    .replace(R.id.container, fragment)
-                    .commit();
-        }
-        if (mDrawerLayout != null) {
-            mDrawerLayout.closeDrawer(mFragmentContainerView);
-        }
-    }
-
 
     /**
      * Per the navigation drawer design guidelines, updates the action bar to show the global app

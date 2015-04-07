@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white">
         <TextView
-            android:id="@+id/item_question_question_text_view"
+            android:id="@+id/item_answer_answer_text_view"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:padding="10dp"
@@ -20,17 +20,5 @@
             android:textSize="18sp"
             tools:text="Sample question"
             />
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="2dp"
-            android:background="@android:color/darker_gray"/>
-        <Button
-            android:id="@+id/item_question_view_answers_button"
-            android:layout_gravity="right"
-            android:padding="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:background="@android:color/white"
-            tools:text="View Answers (33)"/>
     </LinearLayout>
 </android.support.v7.widget.CardView>

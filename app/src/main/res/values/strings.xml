@@ -13,4 +13,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="service_error">Error calling the webservice.</string>
+
+    <string name="item_question_view_answers">View Answers (%d)</string>
+
 </resources>

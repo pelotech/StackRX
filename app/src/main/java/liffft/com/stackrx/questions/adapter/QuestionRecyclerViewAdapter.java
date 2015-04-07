@@ -13,23 +13,24 @@ import com.google.inject.Inject;
 import java.util.List;
 
 import liffft.com.stackrx.R;
+import liffft.com.stackrx.main.application.AppConstants;
+import liffft.com.stackrx.main.event.NavigationEvent;
 import liffft.com.stackrx.main.user.UserSession;
 import liffft.com.stackrx.services.questions.model.Item;
 import roboguice.RoboGuice;
 
-/**
- * Created by pair on 4/6/15.
- */
 public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Inject
-    UserSession mUserSession;
+    private UserSession mUserSession;
 
     private List<Item> mItemList;
+    private Context mContext;
 
     public QuestionRecyclerViewAdapter(Context context) {
         RoboGuice.injectMembers(context, this);
         mItemList = mUserSession.getQuestions().getItems();
+        mContext = context;
     }
 
     @Override
@@ -45,10 +46,15 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int i) {
         ItemHolder itemHolder = (ItemHolder) viewHolder;
         itemHolder.mQuestionText.setText(mItemList.get(i).getTitle());
+        itemHolder.mViewAnswersButton.setText(String.format(mContext.getString(R.string.item_question_view_answers), mItemList.get(i).getAnswerCount()));
+
         itemHolder.mViewAnswersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mUserSession.setSelectedQuestion(mItemList.get(i));
+                NavigationEvent navigationEvent = new NavigationEvent();
+                navigationEvent.setDrawerItem(AppConstants.NAVIGATION.DRAWER_IDENTIFIER.QUESTION_DRAWER);
+                navigationEvent.setFragmentName(AppConstants.NAVIGATION.NAVIGATION_ROUTES.ANSWER_FRAGMENT);
             }
         });
 
