@@ -1,13 +1,12 @@
-package liffft.com.stackrx.main.application;
+package liffft.com.stackrx.main.fragment;
 
-import android.app.Application;
-
-import roboguice.RoboGuice;
+import roboguice.fragment.RoboFragment;
+import rx.subscriptions.CompositeSubscription;
 
 /**
- * Created by graemeharnish on 4/7/15.
+ * Created by graemeharnish on 5/25/15.
  */
-public class StackRXApplication extends Application{
+public class StackRXBaseFragmemt extends RoboFragment {
 
     //region INJECTED CLASSES ----------------------------------------------------------------------
     //endregion
@@ -19,6 +18,8 @@ public class StackRXApplication extends Application{
     //endregion
 
     //region CLASS VARIABLES -----------------------------------------------------------------------
+
+    protected CompositeSubscription mCompositeSubscription = new CompositeSubscription();
     //endregion
 
     //region CONSTRUCTOR ---------------------------------------------------------------------------
@@ -27,10 +28,12 @@ public class StackRXApplication extends Application{
     //region LIFE CYCLE METHODS --------------------------------------------------------------------
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        RoboGuice.setUseAnnotationDatabases(false);
+    public void onDestroy() {
+        super.onDestroy();
+        mCompositeSubscription.unsubscribe();
     }
+
+
     //endregion
 
     //region WIDGET --------------------------------------------------------------------------------
@@ -45,7 +48,7 @@ public class StackRXApplication extends Application{
     //region LOCAL METHODS -------------------------------------------------------------------------
     //endregion
 
-    //region OBSERVERS -----------------------------------------------------------------------------
+    //region SUBSCRIBERS ---------------------------------------------------------------------------
     //endregion
 
     //region ACCESSORS -----------------------------------------------------------------------------
@@ -56,4 +59,5 @@ public class StackRXApplication extends Application{
 
     //region CLASS METHODS -------------------------------------------------------------------------
     //endregion
+
 }

@@ -20,13 +20,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.inject.Inject;
 import com.squareup.otto.Subscribe;
 
 import liffft.com.stackrx.R;
-import liffft.com.stackrx.answers.fragment.AnswersFragment;
 import liffft.com.stackrx.main.application.AppConstants;
 import liffft.com.stackrx.main.event.NavigationEvent;
 import liffft.com.stackrx.questions.fragment.QuestionsFragment;
@@ -207,9 +205,6 @@ public class NavigationDrawerFragment extends RoboFragment {
             if (mCurrentSelectedPosition == AppConstants.NAVIGATION.DRAWER_IDENTIFIER.QUESTION_DRAWER) {
                 if (navigationEvent.getFragmentName().equals(AppConstants.NAVIGATION.NAVIGATION_ROUTES.QUESTION_FRAGMENT))
                     fragment = new QuestionsFragment();
-                else if (navigationEvent.getFragmentName().equals(AppConstants.NAVIGATION.NAVIGATION_ROUTES.QUESTION_FRAGMENT)) {
-                    fragment = new AnswersFragment();
-                }
             }
 
             mFragmentManager.beginTransaction()

@@ -2,7 +2,6 @@ package liffft.com.stackrx.main.user;
 
 import com.google.inject.Singleton;
 
-import liffft.com.stackrx.services.answers.model.Answers;
 import liffft.com.stackrx.services.questions.model.Item;
 import liffft.com.stackrx.services.questions.model.Questions;
 
@@ -10,7 +9,6 @@ import liffft.com.stackrx.services.questions.model.Questions;
 public class UserSession {
 
     private Questions mQuestions;
-    private Answers mAnswers;
     private Item mSelectedQuestion;
 
     public Questions getQuestions() {
@@ -29,11 +27,4 @@ public class UserSession {
         mSelectedQuestion = selectedQuestion;
     }
 
-    public Answers getAnswers() {
-        return mAnswers;
-    }
-
-    public void setAnswers(Answers answers) {
-        mAnswers = answers;
-    }
 }

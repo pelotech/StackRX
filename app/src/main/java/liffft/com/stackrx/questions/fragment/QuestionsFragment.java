@@ -12,16 +12,16 @@ import android.widget.Toast;
 import com.google.inject.Inject;
 
 import liffft.com.stackrx.R;
+import liffft.com.stackrx.main.fragment.StackRXBaseFragmemt;
 import liffft.com.stackrx.main.user.UserSession;
 import liffft.com.stackrx.questions.adapter.QuestionRecyclerViewAdapter;
 import liffft.com.stackrx.services.questions.dao.QuestionsDAO;
 import liffft.com.stackrx.services.questions.model.Questions;
-import roboguice.fragment.RoboFragment;
 import roboguice.inject.InjectView;
-import rx.Subscriber;
+import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 
-public class QuestionsFragment extends RoboFragment {
+public class QuestionsFragment extends StackRXBaseFragmemt {
     //region INJECTED CLASSES ----------------------------------------------------------------------
 
     @Inject
@@ -76,7 +76,10 @@ public class QuestionsFragment extends RoboFragment {
 
         // Subscribe and call the observable
         mGetQuestionSubscriber = new GetQuestionSubscriber();
-        mQuestionsDAO.getQuestions().observeOn(AndroidSchedulers.mainThread()).subscribe(mGetQuestionSubscriber);
+        mCompositeSubscription.add(mQuestionsDAO.getQuestions().observeOn(AndroidSchedulers.mainThread()).subscribe(mGetQuestionSubscriber));
+
+        mQuestionRecyclerViewAdapter = new QuestionRecyclerViewAdapter(getActivity());
+        mRecyclerView.setAdapter(mQuestionRecyclerViewAdapter);
 
         mActivity = getActivity();
     }
@@ -97,7 +100,7 @@ public class QuestionsFragment extends RoboFragment {
 
     //region SUBSCRIBERS ---------------------------------------------------------------------------
 
-    private class GetQuestionSubscriber extends Subscriber<Questions> {
+    private class GetQuestionSubscriber implements Observer<Questions> {
 
         @Override
         public void onCompleted() {
@@ -112,8 +115,7 @@ public class QuestionsFragment extends RoboFragment {
         @Override
         public void onNext(Questions questions) {
             mUserSession.setQuestions(questions);
-            mQuestionRecyclerViewAdapter = new QuestionRecyclerViewAdapter(getActivity());
-            mRecyclerView.setAdapter(mQuestionRecyclerViewAdapter);
+            mQuestionRecyclerViewAdapter.setItemList(questions.getItems());
             mQuestionRecyclerViewAdapter.notifyDataSetChanged();
         }
     }

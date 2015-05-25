@@ -8,30 +8,41 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.inject.Inject;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import liffft.com.stackrx.R;
 import liffft.com.stackrx.main.application.AppConstants;
 import liffft.com.stackrx.main.event.NavigationEvent;
-import liffft.com.stackrx.main.user.UserSession;
 import liffft.com.stackrx.services.questions.model.Item;
 import roboguice.RoboGuice;
 
 public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    @Inject
-    private UserSession mUserSession;
+    //region INJECTED CLASSES ----------------------------------------------------------------------
+    //endregion
 
-    private List<Item> mItemList;
+    //region INJECTED VIEWS ------------------------------------------------------------------------
+    //endregion
+
+    //region LOCAL CONSTANTS -----------------------------------------------------------------------
+    //endregion
+
+    //region CLASS VARIABLES -----------------------------------------------------------------------
+
+    private List<Item> mItemList = new ArrayList<>();
     private Context mContext;
+    //endregion
+
+    //region CONSTRUCTOR ---------------------------------------------------------------------------
 
     public QuestionRecyclerViewAdapter(Context context) {
         RoboGuice.injectMembers(context, this);
-        mItemList = mUserSession.getQuestions().getItems();
         mContext = context;
     }
+    //endregion
+
+    //region LIFE CYCLE METHODS --------------------------------------------------------------------
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -51,7 +62,6 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         itemHolder.mViewAnswersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mUserSession.setSelectedQuestion(mItemList.get(i));
                 NavigationEvent navigationEvent = new NavigationEvent();
                 navigationEvent.setDrawerItem(AppConstants.NAVIGATION.DRAWER_IDENTIFIER.QUESTION_DRAWER);
                 navigationEvent.setFragmentName(AppConstants.NAVIGATION.NAVIGATION_ROUTES.ANSWER_FRAGMENT);
@@ -59,11 +69,36 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         });
 
     }
+    //endregion
+
+    //region WIDGET --------------------------------------------------------------------------------
 
     @Override
     public int getItemCount() {
         return mItemList.size();
     }
+    //endregion
+
+    //region LISTENERS -----------------------------------------------------------------------------
+    //endregion
+
+    //region EVENTS --------------------------------------------------------------------------------
+    //endregion
+
+    //region LOCAL METHODS -------------------------------------------------------------------------
+    //endregion
+
+    //region SUBSCRIBERS ---------------------------------------------------------------------------
+    //endregion
+
+    //region ACCESSORS -----------------------------------------------------------------------------
+
+    public void setItemList(List<Item> itemList) {
+        mItemList = itemList;
+    }
+    //endregion
+
+    //region INNER CLASSES -------------------------------------------------------------------------
 
     private class ItemHolder extends RecyclerView.ViewHolder {
 
@@ -76,5 +111,11 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             mViewAnswersButton = (Button) itemView.findViewById(R.id.item_question_view_answers_button);
         }
     }
+    //endregion
+
+    //region CLASS METHODS -------------------------------------------------------------------------
+    //endregion
+
+
 
 }
