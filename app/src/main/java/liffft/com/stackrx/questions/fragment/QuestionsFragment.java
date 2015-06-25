@@ -47,7 +47,7 @@ public class QuestionsFragment extends StackRXBaseFragmemt {
 
     private QuestionRecyclerViewAdapter mQuestionRecyclerViewAdapter;
 
-    private GetQuestionSubscriber mGetQuestionSubscriber;
+    private GetQuestionObserver mGetQuestionObserver;
     //endregion
 
     //region CONSTRUCTOR ---------------------------------------------------------------------------
@@ -75,8 +75,8 @@ public class QuestionsFragment extends StackRXBaseFragmemt {
         mRecyclerView.setLayoutManager(layoutManager);
 
         // Subscribe and call the observable
-        mGetQuestionSubscriber = new GetQuestionSubscriber();
-        mCompositeSubscription.add(mQuestionsDAO.getQuestions().observeOn(AndroidSchedulers.mainThread()).subscribe(mGetQuestionSubscriber));
+        mGetQuestionObserver = new GetQuestionObserver();
+        mCompositeSubscription.add(mQuestionsDAO.getQuestions().observeOn(AndroidSchedulers.mainThread()).subscribe(mGetQuestionObserver));
 
         mQuestionRecyclerViewAdapter = new QuestionRecyclerViewAdapter(getActivity());
         mRecyclerView.setAdapter(mQuestionRecyclerViewAdapter);
@@ -100,7 +100,7 @@ public class QuestionsFragment extends StackRXBaseFragmemt {
 
     //region SUBSCRIBERS ---------------------------------------------------------------------------
 
-    private class GetQuestionSubscriber implements Observer<Questions> {
+    private class GetQuestionObserver implements Observer<Questions> {
 
         @Override
         public void onCompleted() {
