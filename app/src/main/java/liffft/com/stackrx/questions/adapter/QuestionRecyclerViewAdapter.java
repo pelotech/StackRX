@@ -88,7 +88,7 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     //region LOCAL METHODS -------------------------------------------------------------------------
     //endregion
 
-    //region SUBSCRIBERS ---------------------------------------------------------------------------
+    //region OBSERVERS -----------------------------------------------------------------------------
     //endregion
 
     //region ACCESSORS -----------------------------------------------------------------------------

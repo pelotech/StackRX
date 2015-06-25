@@ -98,7 +98,7 @@ public class QuestionsFragment extends StackRXBaseFragmemt {
     //region LOCAL METHODS -------------------------------------------------------------------------
     //endregion
 
-    //region SUBSCRIBERS ---------------------------------------------------------------------------
+    //region OBSERVERS -----------------------------------------------------------------------------
 
     private class GetQuestionObserver implements Observer<Questions> {
 

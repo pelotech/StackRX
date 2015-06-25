@@ -310,7 +310,7 @@ public class NavigationDrawerFragment extends RoboFragment {
 
     //endregion
 
-    //region SUBSCRIBERS ---------------------------------------------------------------------------
+    //region OBSERVERS -----------------------------------------------------------------------------
     //endregion
 
     //region ACCESSORS -----------------------------------------------------------------------------
