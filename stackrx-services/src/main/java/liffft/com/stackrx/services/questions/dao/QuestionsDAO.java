@@ -26,7 +26,7 @@ public class QuestionsDAO extends BaseService<QuestionsService> {
      * GET list of questions
      * @return List of questions
      */
-    public Observable<Questions> getQuestions() {
-        return API().getQuestions();
+    public Observable<Questions> getQuestions(int pageNumber) {
+        return API().getQuestionsByPageNumber(String.valueOf(pageNumber));
     }
 }
