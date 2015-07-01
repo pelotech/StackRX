@@ -44,7 +44,7 @@ public class LoadingIndicatorDialog extends Dialog {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
         View v = getLayoutInflater().inflate(R.layout.loading_indicator_dialog_layout, null);
-        TextView messageTv = (TextView) v.findViewById(R.id.loading_indicator_dialog_message_textview);
+        TextView messageTv = (TextView) v.findViewById(R.id.loading_indicator_dialog_message_text_view);
         if (message != null) {
             messageTv.setText(message);
         } else {
@@ -54,6 +54,7 @@ public class LoadingIndicatorDialog extends Dialog {
         if (makeTransparent) {
             getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         }
+        show();
 
     }
     //endregion

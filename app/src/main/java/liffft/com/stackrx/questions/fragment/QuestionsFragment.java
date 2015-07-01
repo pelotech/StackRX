@@ -114,14 +114,16 @@ public class QuestionsFragment extends StackRXBaseFragmemt {
             mTotalItemCount = mQuestionLinearLayoutManager.getItemCount();
             mPastVisiblesItems = mQuestionLinearLayoutManager.findFirstVisibleItemPosition();
 
-            if (mLoading) {
+            if (mLoading != true) {
                 if ((mVisibleItemCount + mPastVisiblesItems) >= mTotalItemCount) {
                     mCurrentPage = mCurrentPage + 1;
-                    mLoading = false;
+                    mLoading = true;
                     mCompositeSubscription.add(mQuestionsDAO.getQuestions(mCurrentPage).observeOn(AndroidSchedulers.mainThread()).subscribe(mGetQuestionObserver));
-
+                    mLoadingIndicator.showLoadingIndicatorTransparent();
                 }
             }
+            else
+                mLoading = false;
         }
     }
     //endregion
@@ -148,7 +150,6 @@ public class QuestionsFragment extends StackRXBaseFragmemt {
 
         @Override
         public void onNext(Questions questions) {
-            mUserSession.setQuestions(questions);
             mQuestionRecyclerViewAdapter.setItemList(questions.getItems());
             mQuestionRecyclerViewAdapter.notifyDataSetChanged();
         }

@@ -73,7 +73,6 @@ public class LoadingIndicator {
      * if indicator is already shown, the indicators show count is incremented
      *
      * @param fadeView view to fade out and back in when {@link #hideLoadingIndicator()}
-     *                 or {@link #hideLoadingIndicatorIgnoreCount()} is called
      */
     public void showLoadingIndicatorTransparent(View fadeView) {
         showLoadingIndicator(fadeView, null, true);
@@ -82,27 +81,19 @@ public class LoadingIndicator {
     private void showLoadingIndicator(View fadeView, final String message, final boolean makeTransparent) {
         if (mLoadingIndicator == null) {
             mLoadingIndicator = new LoadingIndicatorDialog(mActivity, message, makeTransparent);
+
         }
     }
 
     /**
      * hides loading indicator
-     * or decrements its count if the show count is greater than 1
      */
     public void hideLoadingIndicator() {
-        if (mLoadingIndicator != null) {
-            mLoadingIndicator = null;
-        }
-    }
-
-    /**
-     * hides loading indicator no matter what its show count is
-     */
-    public void hideLoadingIndicatorIgnoreCount() {
         if (mLoadingIndicator != null) {
             mLoadingIndicator.dismiss();
             mLoadingIndicator = null;
         }
+
     }
     //endregion
 

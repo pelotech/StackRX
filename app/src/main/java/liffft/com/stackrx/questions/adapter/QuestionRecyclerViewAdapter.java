@@ -94,7 +94,10 @@ public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     //region ACCESSORS -----------------------------------------------------------------------------
 
     public void setItemList(List<Item> itemList) {
-        mItemList = itemList;
+        if (mItemList.size() == 0)
+            mItemList = itemList;
+        else
+            mItemList.addAll(itemList);
     }
     //endregion
 
